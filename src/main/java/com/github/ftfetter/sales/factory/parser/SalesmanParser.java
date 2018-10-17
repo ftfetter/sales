@@ -1,5 +1,7 @@
 package com.github.ftfetter.sales.factory.parser;
 
+import com.github.ftfetter.sales.pojos.SalesmanData;
+
 public class SalesmanParser implements FileParser {
 
     private final String SALESMAN_ID = "001";
@@ -10,7 +12,7 @@ public class SalesmanParser implements FileParser {
     }
 
     @Override
-    public Boolean parse(String line) {
+    public SalesmanData parse(String line) {
         return null;
     }
 }

@@ -6,6 +6,14 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 
 public class CreateEvent implements DirectoryEvent {
 
+    private String inputPath;
+    private String outputPath;
+
+    public CreateEvent(String directoryPath) {
+        this.inputPath = directoryPath + "/in";
+        this.outputPath = directoryPath + "/out";
+    }
+
     @Override
     public Boolean isElegible(WatchEvent event) {
         return event.kind().equals(ENTRY_CREATE);

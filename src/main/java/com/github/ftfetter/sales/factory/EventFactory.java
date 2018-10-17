@@ -13,10 +13,10 @@ public class EventFactory {
     private final ModifyEvent modifyEvent;
     private final DeleteEvent deleteEvent;
 
-    public EventFactory() {
-        this.createEvent = new CreateEvent();
-        this.modifyEvent = new ModifyEvent();
-        this.deleteEvent = new DeleteEvent();
+    public EventFactory(String directoryPath) {
+        this.createEvent = new CreateEvent(directoryPath);
+        this.modifyEvent = new ModifyEvent(directoryPath);
+        this.deleteEvent = new DeleteEvent(directoryPath);
     }
 
     public Stream<DirectoryEvent> get() {

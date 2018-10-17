@@ -6,6 +6,14 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
 public class ModifyEvent implements DirectoryEvent {
 
+    private String inputPath;
+    private String outputPath;
+
+    public ModifyEvent(String directoryPath) {
+        this.inputPath = directoryPath + "/in";
+        this.outputPath = directoryPath + "/out";
+    }
+
     @Override
     public Boolean isElegible(WatchEvent event) {
         return event.kind().equals(ENTRY_MODIFY);
