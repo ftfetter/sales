@@ -5,6 +5,7 @@ import io.reactivex.ObservableEmitter;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
@@ -18,8 +19,8 @@ public class DirectoryObservable {
     private final Path directory;
     private final WatchService watcher;
 
-    public DirectoryObservable(Path directory) throws IOException {
-        this.directory = directory;
+    public DirectoryObservable(String directoryPath) throws IOException {
+        this.directory = Paths.get(directoryPath);
         this.watcher = directory.getFileSystem().newWatchService();
     }
 

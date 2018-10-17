@@ -1,21 +1,19 @@
 package com.github.ftfetter.sales.service;
 
+import com.github.ftfetter.sales.factory.EventFactory;
 import com.github.ftfetter.sales.utils.DirectoryObservable;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.nio.file.WatchEvent;
-
-import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
 public class SalesService {
 
     private final DirectoryObservable observable;
+    private final EventFactory eventFactory;
 
     public SalesService(String path) throws IOException {
-        this.observable = new DirectoryObservable(Paths.get(path));
+        this.observable = new DirectoryObservable(path + "/in");
+        this.eventFactory = new EventFactory();
     }
 
     public void generateMetrics() {
@@ -28,14 +26,9 @@ public class SalesService {
     }
 
     private void handleEvent(WatchEvent event) {
-        if (event.kind().equals(ENTRY_MODIFY)) {
-            System.out.println("MODIFICATION IN " + event.context());
-        }
-        if (event.kind().equals(ENTRY_DELETE)) {
-            System.out.println(event.context() + " FILE DELETED");
-        }
-        if (event.kind().equals(ENTRY_CREATE)) {
-            System.out.println(event.context() + " FILE CREATED");
-        }
+        eventFactory.get()
+                .filter(factory -> factory.isElegible(event))
+                .findAny()
+                .map(factory -> factory.execute(String.valueOf(event.context())));
     }
 }
