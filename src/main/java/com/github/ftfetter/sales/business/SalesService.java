@@ -13,7 +13,7 @@ public class SalesService {
 
     public SalesService(String path) throws IOException {
         this.observable = new DirectoryObservable(path + "/in");
-        this.eventFactory = new EventFactory();
+        this.eventFactory = new EventFactory(path);
     }
 
     public void generateMetrics() {
