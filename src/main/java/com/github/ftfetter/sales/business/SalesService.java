@@ -1,4 +1,4 @@
-package com.github.ftfetter.sales.service;
+package com.github.ftfetter.sales.business;
 
 import com.github.ftfetter.sales.factory.EventFactory;
 import com.github.ftfetter.sales.utils.DirectoryObservable;
