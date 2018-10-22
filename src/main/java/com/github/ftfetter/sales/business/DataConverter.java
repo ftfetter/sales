@@ -40,7 +40,9 @@ public class DataConverter {
         RxFileReader reader = new RxFileReader(inputPath);
         reader.readLines(fileName, 10)
                 .map(line -> Arrays.asList(line.split(LINE_SPLITTER)))
-                .subscribe(this::parser);
+                .subscribe(
+                        this::parser,
+                        Throwable::printStackTrace);
 
         orderSalesByValue();
         return SalesMetrics.Builder.of()
