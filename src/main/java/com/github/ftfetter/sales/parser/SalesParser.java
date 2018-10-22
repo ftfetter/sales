@@ -15,6 +15,7 @@ public class SalesParser {
     private final String ITEM_ATTRIBUTE_SPLITTER = "-";
 
     public SalesData parse(List<String> line) {
+        System.out.println("PARSING SALES");
         return SalesData.Builder.of()
                 .saleId(line.get(1))
                 .items(parseItems(line.get(2)))

@@ -8,6 +8,7 @@ import java.util.List;
 public class SalesmanParser {
 
     public SalesmanData parse(List<String> line) {
+        System.out.println("PARSING SALESMAN");
         return SalesmanData.Builder.of()
                 .cpf(line.get(1))
                 .name(line.get(2))
