@@ -1,16 +1,15 @@
 package com.github.ftfetter.sales.factory.event;
 
+import java.io.File;
 import java.nio.file.WatchEvent;
 
 import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
 
 public class DeleteEvent implements DirectoryEvent {
 
-    private String inputPath;
     private String outputPath;
 
     public DeleteEvent(String directoryPath) {
-        this.inputPath = directoryPath + "/in";
         this.outputPath = directoryPath + "/out";
     }
 
@@ -20,8 +19,10 @@ public class DeleteEvent implements DirectoryEvent {
     }
 
     @Override
-    public Boolean execute(String fileName) {
-        System.out.println(fileName + " FILE DELETED");
-        return true;
+    public void execute(String fileName) {
+        File file = new File(String.format("%s/%s.done.dat", outputPath, fileName));
+        if (!file.delete()) {
+            System.out.println("Error deleting the " + fileName + ".done.dat file.");
+        }
     }
 }
