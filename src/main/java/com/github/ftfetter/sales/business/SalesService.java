@@ -25,10 +25,11 @@ public class SalesService {
         );
     }
 
-    private void handleEvent(WatchEvent event) {
+    private void handleEvent(WatchEvent event) throws Exception {
         eventFactory.get()
                 .filter(factory -> factory.isElegible(event))
                 .findAny()
-                .map(factory -> factory.execute(String.valueOf(event.context())));
+                .orElseThrow(() -> new Exception("Ilegal event."))
+                .execute(String.valueOf(event.context()));
     }
 }
