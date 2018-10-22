@@ -18,23 +18,41 @@ public class ItemData {
         return itemId;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
-
     public Integer getQuantity() {
         return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public static final class Builder {
+
+        private String itemId;
+        private Integer quantity;
+        private BigDecimal price;
+
+        public static Builder of() {
+            return new Builder();
+        }
+
+        public Builder itemId(String itemId) {
+            this.itemId = itemId;
+            return this;
+        }
+
+        public Builder quantity(Integer quantity) {
+            this.quantity = quantity;
+            return this;
+        }
+
+        public Builder price(BigDecimal price) {
+            this.price = price;
+            return this;
+        }
+
+        public ItemData build() {
+            return new ItemData(itemId,quantity,price);
+        }
     }
 }

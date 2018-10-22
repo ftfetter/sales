@@ -37,9 +37,6 @@ public class SalesMetrics {
         private String mostExpensiveSaleId;
         private String worstSalesmanName;
 
-        private Builder() {
-        }
-
         public static Builder of() {
             return new Builder();
         }
@@ -65,7 +62,15 @@ public class SalesMetrics {
         }
 
         public SalesMetrics build() {
-            return new SalesMetrics(totalClients, totalSalesman, mostExpensiveSaleId, worstSalesmanName);
+            return new SalesMetrics(totalClients,totalSalesman,mostExpensiveSaleId,worstSalesmanName);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Total Clients: " + totalClients + "; \n" +
+                "Total Salesman: " + totalSalesman + "; \n" +
+                "Most expensive Sale: " + mostExpensiveSaleId + "; \n" +
+                "Worst Salesman: " + worstSalesmanName + ";";
     }
 }

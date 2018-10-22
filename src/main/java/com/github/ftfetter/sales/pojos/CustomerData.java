@@ -1,15 +1,12 @@
 package com.github.ftfetter.sales.pojos;
 
-import com.github.ftfetter.sales.type.DataType;
-
-public class CustomerData extends FileData {
+public class CustomerData {
 
     private String cnpj;
     private String name;
     private String businessArea;
 
     public CustomerData(String cnpj, String name, String businessArea) {
-        super(DataType.CUSTOMER);
         this.cnpj = cnpj;
         this.name = name;
         this.businessArea = businessArea;
@@ -19,23 +16,41 @@ public class CustomerData extends FileData {
         return cnpj;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getBusinessArea() {
         return businessArea;
     }
 
-    public void setBusinessArea(String businessArea) {
-        this.businessArea = businessArea;
+    public static final class Builder {
+
+        private String cnpj;
+        private String name;
+        private String businessArea;
+
+        public static Builder of() {
+            return new Builder();
+        }
+
+        public Builder cnpj(String cnpj) {
+            this.cnpj = cnpj;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder businessArea(String businessArea) {
+            this.businessArea = businessArea;
+            return this;
+        }
+
+        public CustomerData build() {
+            return new CustomerData(cnpj,name,businessArea);
+        }
     }
 }
