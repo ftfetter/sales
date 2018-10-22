@@ -1,18 +1,12 @@
-package com.github.ftfetter.sales.factory.parser;
+package com.github.ftfetter.sales.parser;
 
 import com.github.ftfetter.sales.pojos.CustomerData;
 
-public class CustomerParser implements FileParser {
+import java.util.List;
 
-    private final String CUSTOMER_ID = "002";
+public class CustomerParser {
 
-    @Override
-    public Boolean isElegible(String id) {
-        return id.equals(CUSTOMER_ID);
-    }
-
-    @Override
-    public CustomerData parse(String line) {
+    public CustomerData parse(List<String> line) {
         return null;
     }
 }
