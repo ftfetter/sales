@@ -1,7 +1,7 @@
 package com.github.ftfetter.sales.type;
 
-import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public enum DataType {
 
@@ -9,14 +9,19 @@ public enum DataType {
     CUSTOMER    ("002"),
     SALES       ("003");
 
-    private String id;
+    private String dataId;
 
-    DataType(String id) {
+    DataType(String dataId) {
+        this.dataId = dataId;
+    }
+
+    public String getDataId() {
+        return dataId;
     }
 
     public static Optional<DataType> getById(String id) {
-        return Arrays.stream(DataType.values())
-                .filter(dataType -> dataType.id.equals(id))
-                .findFirst();
+        return Stream.of(values())
+                .filter(dataType -> dataType.getDataId().equals(id))
+                .findAny();
     }
 }
