@@ -11,10 +11,10 @@ import java.util.stream.Stream;
 
 public class SalesParser {
 
-    private final String ITEM_SPLITTER = ",";
-    private final String ITEM_ATTRIBUTE_SPLITTER = "-";
+    private static final String ITEM_SPLITTER = ",";
+    private static final String ITEM_ATTRIBUTE_SPLITTER = "-";
 
-    public SalesData parse(List<String> line) {
+    public static SalesData parse(List<String> line) {
         System.out.println("PARSING SALES");
         return SalesData.Builder.of()
                 .saleId(line.get(1))
@@ -23,7 +23,7 @@ public class SalesParser {
                 .build();
     }
 
-    private List<ItemData> parseItems(String items) {
+    private static List<ItemData> parseItems(String items) {
         return Stream.of(
                 items.replace("[","")
                         .replace("]","")

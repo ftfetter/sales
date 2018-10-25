@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CustomerParser {
 
-    public CustomerData parse(List<String> line) {
+    public static CustomerData parse(List<String> line) {
         System.out.println("PARSING CUSTOMER");
         return CustomerData.Builder.of()
                 .cnpj(line.get(1))
