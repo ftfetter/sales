@@ -8,7 +8,7 @@ public class SalesmanData {
     private String name;
     private BigDecimal salary;
 
-    private SalesmanData(String cpf, String name, BigDecimal salary) {
+    public SalesmanData(String cpf, String name, BigDecimal salary) {
         this.cpf = cpf;
         this.name = name;
         this.salary = salary;
